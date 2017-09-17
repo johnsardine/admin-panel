@@ -4,7 +4,7 @@
       <div class="AppHeader__brand">Admin Panel</div>
       <div class="AppHeader__navigation">
         <ul class="NavBar">
-          <li class="NavBar__item"><a href="#" class="NavBar__cell">Dashboard</a></li>
+          <li class="NavBar__item"><router-link :to="{ name: 'Dashboard'}" class="NavBar__cell">Dashboard</router-link></li>
           <li class="NavBar__item">
             <a href="#" class="NavBar__cell">Has children</a>
             <ul class="NavBar__panel">
@@ -19,7 +19,7 @@
               <p>Anything</p>
             </div>
           </li>
-          <li class="NavBar__item"><a href="#" class="NavBar__cell">About</a></li>
+          <li class="NavBar__item"><router-link :to="{ name: 'About'}" class="NavBar__cell">About</router-link></li>
           <li class="NavBar__item"><div class="NavBar__cell App__version">v0.1.0</div></li>
         </ul>
       </div>
@@ -31,13 +31,13 @@
         </div>
         <div class="ComponentScroll AppNavigation__main">
           <ul class="NavCol">
-          <li class="NavCol__item"><a href="#" class="NavCol__cell">Dashboard</a></li>
+          <li class="NavCol__item"><router-link :to="{ name: 'Dashboard'}" class="NavCol__cell">Dashboard</router-link></li>
           <li class="NavCol__item">
             <a href="#" class="NavCol__cell">Has children</a>
             <ul class="NavCol__panel">
               <li><a href="#">Dashboard</a></li>
               <li><a href="#">Another one</a></li>
-              <li><a href="#">About</a></li>
+              <li><router-link :to="{ name: 'About'}">About</router-link></li>
             </ul>
           </li>
           <li class="NavCol__item">
@@ -46,7 +46,7 @@
               <p>Anything</p>
             </div>
           </li>
-          <li class="NavCol__item"><a href="#" class="NavCol__cell">About</a></li>
+          <li class="NavCol__item"><router-link :to="{ name: 'About'}" class="NavCol__cell">About</router-link></li>
           <li class="NavCol__item"><div class="NavCol__cell App__version">v0.1.0</div></li>
         </ul>
         </div>
