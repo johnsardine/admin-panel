@@ -150,14 +150,12 @@ $headerHeight: 40px;
 
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
 
   color: #dbe2ea;
   background-color: #21283e;
   font-size: 16px;
   line-height: 1.3em;
-
-  box-sizing: border-box;
-  border-right: 1px solid;
 
   &__header,
   &__footer,
@@ -210,7 +208,8 @@ $headerHeight: 40px;
   &__cell {
     @extend %NavBar__cell;
     border-radius: 2px;
-    transition: 0.2s ease background-color;
+    transition: 0.2s ease;
+    transition-property: color, background-color;
 
     // Links only
     @at-root a#{&} {
@@ -224,7 +223,12 @@ $headerHeight: 40px;
     // Reads: When Cell is child of Hover Item and an A element
     // Reads: .NavBar__item:hover a.NavBar__cell
     @at-root #{$s}__item:hover a#{&} {
+      color: inherit;
       background-color: rgba(255, 255, 255, 0.1);
+    }
+    &.router-link-active {
+      color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(255, 255, 255, 0.9);
     }
   }
 
@@ -273,7 +277,8 @@ $headerHeight: 40px;
 
   &__cell {
     @extend %NavBar__cell;
-    transition: 0.2s ease background-color;
+    transition: 0.2s ease;
+    transition-property: color, background-color;
 
     // Links only
     @at-root a#{&} {
@@ -288,7 +293,12 @@ $headerHeight: 40px;
     // Reads: .NavBar__item:hover a.NavBar__cell
     @at-root #{$s}__item:hover a#{&} {
       // text-decoration: underline;
+      color: inherit;
       background-color: rgba(255, 255, 255, 0.1);
+    }
+    &.router-link-active {
+      color: rgba(0, 0, 0, 0.8);
+      background-color: rgba(255, 255, 255, 0.8);
     }
   }
 
