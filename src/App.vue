@@ -27,17 +27,28 @@
     <div class="AppContainer">
       <div class="AppNavigation">
         <div class="AppNavigation__header">
-          Header
+          Welcome, Human!
         </div>
         <div class="ComponentScroll AppNavigation__main">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum debitis est laborum. Laborum ducimus totam fuga esse sunt praesentium odit ullam saepe exercitationem, soluta assumenda asperiores at vero aliquam sint!</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum debitis est laborum. Laborum ducimus totam fuga esse sunt praesentium odit ullam saepe exercitationem, soluta assumenda asperiores at vero aliquam sint!</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum debitis est laborum. Laborum ducimus totam fuga esse sunt praesentium odit ullam saepe exercitationem, soluta assumenda asperiores at vero aliquam sint!</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum debitis est laborum. Laborum ducimus totam fuga esse sunt praesentium odit ullam saepe exercitationem, soluta assumenda asperiores at vero aliquam sint!</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum debitis est laborum. Laborum ducimus totam fuga esse sunt praesentium odit ullam saepe exercitationem, soluta assumenda asperiores at vero aliquam sint!</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum debitis est laborum. Laborum ducimus totam fuga esse sunt praesentium odit ullam saepe exercitationem, soluta assumenda asperiores at vero aliquam sint!</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum debitis est laborum. Laborum ducimus totam fuga esse sunt praesentium odit ullam saepe exercitationem, soluta assumenda asperiores at vero aliquam sint!</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum debitis est laborum. Laborum ducimus totam fuga esse sunt praesentium odit ullam saepe exercitationem, soluta assumenda asperiores at vero aliquam sint!</p>
+          <ul class="NavCol">
+          <li class="NavCol__item"><a href="#" class="NavCol__cell">Dashboard</a></li>
+          <li class="NavCol__item">
+            <a href="#" class="NavCol__cell">Has children</a>
+            <ul class="NavCol__panel">
+              <li><a href="#">Dashboard</a></li>
+              <li><a href="#">Another one</a></li>
+              <li><a href="#">About</a></li>
+            </ul>
+          </li>
+          <li class="NavCol__item">
+            <a href="#" class="NavCol__cell">Has Mega</a>
+            <div class="NavCol__panel">
+              <p>Anything</p>
+            </div>
+          </li>
+          <li class="NavCol__item"><a href="#" class="NavCol__cell">About</a></li>
+          <li class="NavCol__item"><div class="NavCol__cell App__version">v0.1.0</div></li>
+        </ul>
         </div>
         <div class="AppNavigation__footer">
           Footer
@@ -59,7 +70,7 @@ export default {
 <style lang="scss">
 body {
   margin: 0;
-  font-family: sans-serif;
+  font-family: Avenir, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -75,7 +86,7 @@ $headerHeight: 40px;
 
 .App {
   &__version {
-    color: #91b8e0;
+    color: rgba(255, 255, 255, 0.5);
   }
 }
 
@@ -86,7 +97,7 @@ $headerHeight: 40px;
   right: 0;
 
   color: #fff;
-  background-color: #3374b9;
+  background-color: #405db5;
   padding: 3px 0;
 
   & {
@@ -128,6 +139,11 @@ $headerHeight: 40px;
   display: flex;
   flex-direction: column;
 
+  color: #dbe2ea;
+  background-color: #21283e;
+  font-size: 16px;
+  line-height: 1.3em;
+
   box-sizing: border-box;
   border-right: 1px solid;
 
@@ -138,8 +154,15 @@ $headerHeight: 40px;
 
   &__header,
   &__footer {
+    font-size: 14px;
     padding: 5px 8px;
-    background-color: #dfe8f1;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  &__header {
+    $spacingY: 15px;
+    padding-top: $spacingY;
+    padding-bottom: $spacingY;
   }
 
   &__main {
@@ -174,6 +197,8 @@ $headerHeight: 40px;
 
   &__cell {
     @extend %NavBar__cell;
+    border-radius: 2px;
+    transition: 0.2s ease background-color;
 
     // Links only
     @at-root a#{&} {
@@ -187,7 +212,7 @@ $headerHeight: 40px;
     // Reads: When Cell is child of Hover Item and an A element
     // Reads: .NavBar__item:hover a.NavBar__cell
     @at-root #{$s}__item:hover a#{&} {
-      text-decoration: underline;
+      background-color: rgba(255, 255, 255, 0.1);
     }
   }
 
@@ -211,14 +236,55 @@ $headerHeight: 40px;
 
     // Positioning Details
     @at-root ul#{&},
-    & {
-      margin-top: -2px;
-    }
+    & {}
   }
 
   // Open Panel
   &__item:hover > &__panel {
-    display: block;
+    // display: block;
+  }
+}
+
+.NavCol {
+  $s: &; // Store scope selector
+  display: flex;
+  flex-direction: column;
+
+  & {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  &__item {
+    position: relative;
+  }
+
+  &__cell {
+    @extend %NavBar__cell;
+    transition: 0.2s ease background-color;
+
+    // Links only
+    @at-root a#{&} {
+      display: block;
+      color: currentColor;
+      text-decoration: none;
+    }
+  }
+
+  &__cell {
+    // Reads: When Cell is child of Hover Item and an A element
+    // Reads: .NavBar__item:hover a.NavBar__cell
+    @at-root #{$s}__item:hover a#{&} {
+      // text-decoration: underline;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  &__panel {
+    display: none;
+    overflow: hidden;
+    padding: 0 10px;
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }
 
