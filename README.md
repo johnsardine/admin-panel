@@ -1,6 +1,8 @@
-# admin-panel
+# Admin Panel
 
-> A Vue.js project
+The goal of this repo is to build a scalable UI architecture using routes, views, sub views and flux.
+
+Scaffolding provided by [Progressive Web App Vue Template](https://github.com/vuejs-templates/pwa)
 
 ## Build Setup
 
