@@ -84,6 +84,18 @@ $headerHeight: 40px;
   padding: 8px 10px;
 }
 
+.NoScriptMessage {
+  padding: 50px;
+  max-width: 600px;
+  margin: 40px auto;
+  background-color: #405db5;
+  color: rgba(255, 255, 255, 0.9);
+
+  a {
+    color: currentColor;
+  }
+}
+
 .App {
   &__version {
     color: rgba(255, 255, 255, 0.5);
