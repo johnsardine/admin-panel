@@ -226,6 +226,7 @@ $headerHeight: 40px;
       color: inherit;
       background-color: rgba(255, 255, 255, 0.1);
     }
+    @at-root #{$s}__item:hover a#{&}.router-link-active,
     &.router-link-active {
       color: rgba(0, 0, 0, 0.8);
       background-color: rgba(255, 255, 255, 0.9);
@@ -296,6 +297,7 @@ $headerHeight: 40px;
       color: inherit;
       background-color: rgba(255, 255, 255, 0.1);
     }
+    @at-root #{$s}__item:hover a#{&}.router-link-active,
     &.router-link-active {
       color: rgba(0, 0, 0, 0.8);
       background-color: rgba(255, 255, 255, 0.8);
