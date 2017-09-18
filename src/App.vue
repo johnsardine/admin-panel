@@ -203,6 +203,11 @@ $headerHeight: 40px;
   }
   &__item {
     position: relative;
+    margin-left: 5px;
+
+    &::first-child {
+      margin-left: 0;
+    }
   }
 
   &__cell {
