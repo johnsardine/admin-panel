@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Dashboard from '@/components/Dashboard';
 import About from '@/components/About';
+import Settings from '@/components/Settings';
 
 Vue.use(Router);
 
@@ -21,6 +22,11 @@ export default new Router({
       path: '/about',
       name: 'About',
       component: About,
+    },
+    {
+      path: '/settings',
+      name: 'Settings',
+      component: Settings,
     },
   ],
 });

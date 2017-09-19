@@ -20,6 +20,7 @@
             </div>
           </li>
           <li class="NavBar__item"><router-link :to="{ name: 'About'}" class="NavBar__cell">About</router-link></li>
+          <li class="NavBar__item"><router-link :to="{ name: 'Settings'}" class="NavBar__cell">Settings</router-link></li>
           <li class="NavBar__item"><div class="NavBar__cell App__version">v0.1.0</div></li>
         </ul>
       </div>
@@ -47,6 +48,7 @@
             </div>
           </li>
           <li class="NavCol__item"><router-link :to="{ name: 'About'}" class="NavCol__cell">About</router-link></li>
+          <li class="NavCol__item"><router-link :to="{ name: 'Settings'}" class="NavCol__cell">Settings</router-link></li>
           <li class="NavCol__item"><div class="NavCol__cell App__version">v0.1.0</div></li>
         </ul>
         </div>
@@ -70,6 +72,7 @@ export default {
 <style lang="scss">
 body {
   margin: 0;
+  font-size: 16px;
   font-family: Avenir, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
