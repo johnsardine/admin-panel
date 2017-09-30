@@ -3,8 +3,8 @@ import Router from 'vue-router';
 import Dashboard from '@/components/Dashboard';
 import About from '@/components/About';
 import Settings from '@/components/Settings';
-import Devices from '@/components/Devices';
-import Device from '@/components/Device';
+import DevicesMap from '@/components/DevicesMap';
+import DeviceDetail from '@/components/DeviceDetail';
 
 Vue.use(Router);
 
@@ -14,7 +14,9 @@ export default new Router({
       path: '/',
       name: 'Root',
       redirect: '/dashboard',
-      ignoreInMenu: true,
+      meta: {
+        ignoreInMenu: true,
+      },
     },
     {
       path: '/dashboard',
@@ -34,11 +36,13 @@ export default new Router({
     {
       path: '/devices',
       name: 'Devices',
-      component: Devices,
+      component: DevicesMap,
       children: [
         {
-          path: 'device/:id',
-          component: Device,
+          path: '/devices/:id/',
+          name: 'DeviceDetail',
+          component: DeviceDetail,
+          props: true,
         },
       ],
     },

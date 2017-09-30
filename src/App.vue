@@ -83,7 +83,7 @@ export default {
       .filter((route) => {
         const {
           ignoreInMenu,
-        } = route;
+        } = route.meta || {};
         return (!ignoreInMenu);
       })
       .map((route) => {
@@ -100,6 +100,19 @@ export default {
 </script>
 
 <style lang="scss">
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+html,
+body,
+#app,
+.AppContainer,
+.AppMain {
+  height: 100%;
+}
 body {
   margin: 0;
   font-size: 16px;
@@ -214,8 +227,8 @@ $headerHeight: 40px;
 }
 
 .AppMain {
-  margin-top: $headerHeight;
-  overflow: hidden; // Force margin collapse
+  padding-top: $headerHeight;
+  // overflow: hidden; // Force margin collapse
 
   $spacingY: 40px;
   &__view {
