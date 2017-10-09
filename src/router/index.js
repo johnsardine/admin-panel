@@ -27,6 +27,18 @@ export default new Router({
       path: '/about',
       name: 'About',
       component: About,
+      children: [
+        {
+          path: '1',
+          name: 'Child 1',
+          component: About,
+        },
+        {
+          path: '2',
+          name: 'Child 2',
+          component: About,
+        },
+      ],
     },
     {
       path: '/settings',
@@ -39,10 +51,13 @@ export default new Router({
       component: DevicesMap,
       children: [
         {
-          path: '/devices/:id/',
+          path: ':id',
           name: 'DeviceDetail',
           component: DeviceDetail,
           props: true,
+          meta: {
+            ignoreInMenu: true,
+          },
         },
       ],
     },

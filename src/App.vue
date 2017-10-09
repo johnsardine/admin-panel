@@ -37,14 +37,11 @@
           <ul class="NavCol">
             <li v-for="route in routerMenuItems" class="NavCol__item">
               <router-link :to="route" class="NavCol__cell">{{ route.name }}</router-link>
-            </li>
 
-            <li class="NavCol__item">
-              <a href="#" class="NavCol__cell">Has children</a>
-              <ul class="NavCol__panel">
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Another one</a></li>
-                <li><router-link :to="{ name: 'About'}">About</router-link></li>
+              <ul class="NavCol__panel" v-if="route.children">
+                <li v-for="child in route.children" class="NavCol__subitem">
+                  <router-link :to="{ name: child.name}" class="NavCol__subcell">{{ child.name }}</router-link>
+                </li>
               </ul>
             </li>
 
@@ -79,19 +76,26 @@ export default {
       const {
         routes,
       } = router.options;
-      return routes
-      .filter((route) => {
+
+      function filterIgnored(route) {
         const {
           ignoreInMenu,
         } = route.meta || {};
         return (!ignoreInMenu);
-      })
+      }
+
+      return routes
+      .filter(filterIgnored)
       .map((route) => {
         const {
           name,
+          children: rawChildren,
         } = route;
+        const children = (rawChildren || [])
+          .filter(filterIgnored);
         return {
           name,
+          children,
         };
       });
     },
@@ -128,6 +132,9 @@ $headerHeight: 40px;
 // Element inside App Header and Navbar
 %NavBar__cell {
   padding: 8px 10px;
+}
+%NavBar__subcell {
+  padding: 6px 8px;
 }
 
 .NoScriptMessage {
@@ -356,10 +363,48 @@ $headerHeight: 40px;
   }
 
   &__panel {
-    display: none;
     overflow: hidden;
     padding: 0 10px;
-    background-color: rgba(255, 255, 255, 0.1);
+    max-height: 0;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+    transition-property: max-height, opacity;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  &__cell.router-link-active ~ &__panel {
+    opacity: 1;
+    max-height: 400px;
+  }
+
+  &__subitem {
+
+  }
+  &__subcell {
+    @extend %NavBar__subcell;
+    transition: 0.2s ease;
+    transition-property: color, background-color, font-weight;
+
+    // Links only
+    @at-root a#{&} {
+      display: block;
+      color: currentColor;
+      text-decoration: none;
+    }
+  }
+
+  &__subcell {
+    // Reads: When Cell is child of Hover Item and an A element
+    // Reads: .NavBar__item:hover a.NavBar__cell
+    @at-root #{$s}__subitem:hover a#{&} {
+      // text-decoration: underline;
+      color: #436ae2;
+    }
+    @at-root #{$s}__subitem:hover a#{&}.router-link-active,
+    &.router-link-active {
+      color: currentColor;
+      font-weight: bold;
+    }
   }
 }
 
