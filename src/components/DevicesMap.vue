@@ -14,9 +14,13 @@ export default {
   components: {},
   data() {
     return {
-      markers: [
+      devices: [
         {
-          markerId: 1,
+          id: 1,
+          position: {
+            lat: -25.363,
+            lng: 131.044,
+          },
         },
       ],
     };
@@ -36,13 +40,15 @@ export default {
 
       // Markers
       const {
-        markers,
+        devices,
       } = this;
-      markers.forEach(({
-        markerId,
-      }) => {
+      devices.forEach((device) => {
+        const {
+          id: markerId,
+          position,
+        } = device;
         const marker = new google.maps.Marker({
-          position: mapCenter,
+          position,
           map,
         });
         const handleMarkerClick = this.handleMarkerClick.bind(this, markerId);
@@ -57,11 +63,12 @@ export default {
         },
       });
     },
-    handlePanelEvents(to) {
+    handlePanelEvents() {
       const {
-        name,
-      } = to;
-      if (name === 'DeviceDetail') {
+        panel,
+      } = this.$refs;
+      if (panel) {
+        // Bind to close when panel exists
         this.$refs.panel.$once('close', this.handlePanelClose);
       }
     },
@@ -75,7 +82,14 @@ export default {
     console.log('Mounted map');
     GoogleMapsLoader.key = 'AIzaSyAKxqIqxT8V5OjEZduJVQMn__JUQHxnQWY';
     GoogleMapsLoader.load(this.mapInit);
-    this.$watch(() => this.$route, this.handlePanelEvents);
+
+    // Bind to panel close on route change and direct visit
+    // TODO: Refactor this
+    this.handlePanelEvents();
+    this.$watch(() => this.$route, () => {
+      console.log('Changed Route');
+      this.handlePanelEvents();
+    });
   },
 };
 </script>
@@ -91,7 +105,7 @@ export default {
     }
     &__panel {
         width: 300px;
-        background-color: #ccc;
+        background-color: #fff;
     }
 }
 </style>
